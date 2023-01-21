@@ -3,3 +3,8 @@ res://Scenes/Cards/ActionBtn.gd
 res://Scenes/Cards/NightlyCard.tscn
 res://App.tscn
 res://DrawnProgressBar.gd
+res://LuanchCard.gd
+res://Globals/PckUnpacker.gd
+res://Timeline.gd
+res://NightlyList.gd
+res://CatagoriesScroll.gd

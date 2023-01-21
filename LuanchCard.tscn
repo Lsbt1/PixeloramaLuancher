@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0l6084ipb3g6"]
+[gd_scene load_steps=6 format=3 uid="uid://c0l6084ipb3g6"]
 
+[ext_resource type="Script" path="res://LuanchCard.gd" id="1_2bl50"]
 [ext_resource type="Texture2D" uid="uid://dh0gnmenw8j77" path="res://Assets/Cancel.png" id="1_oa8ng"]
 [ext_resource type="Script" path="res://Scenes/Cards/ActionBtn.gd" id="2_huqn1"]
 [ext_resource type="Script" path="res://DrawnProgressBar.gd" id="3_s7q55"]
+[ext_resource type="Texture2D" uid="uid://cfjagubfyu216" path="res://Assets/Luanch.png" id="5_ghkwv"]
 
 [node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(225, 145)
@@ -10,43 +12,53 @@ offset_left = 347.0
 offset_top = 215.0
 offset_right = 572.0
 offset_bottom = 360.0
+script = ExtResource("1_2bl50")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Rows" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="App" type="Label" parent="VBoxContainer"]
+[node name="App" type="Label" parent="MarginContainer/Rows"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 14
 text = "Pixelorama v10.3"
+autowrap_mode = 2
 text_overrun_behavior = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Mentions" type="HBoxContainer" parent="MarginContainer/Rows"]
 layout_mode = 2
 
-[node name="Author" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="Author" type="Label" parent="MarginContainer/Rows/Mentions"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.552941)
 theme_override_font_sizes/font_size = 10
-text = "Author"
+text = "Orama-Interactive"
 
-[node name="Sep" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="Sep" type="Label" parent="MarginContainer/Rows/Mentions"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.552941)
 theme_override_font_sizes/font_size = 10
 text = "•"
 
-[node name="Type" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="Type" type="Label" parent="MarginContainer/Rows/Mentions"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.552941)
 theme_override_font_sizes/font_size = 10
 text = "App"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Actions" type="HBoxContainer" parent="MarginContainer/Rows"]
 layout_mode = 2
 alignment = 2
 
-[node name="Progress" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="Progress" type="Control" parent="MarginContainer/Rows/Actions"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 script = ExtResource("3_s7q55")
@@ -56,9 +68,45 @@ width = 3.0
 antialiased = true
 convert_progress_to_rotation = true
 
-[node name="ActionBtn" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ActionBtn" type="Button" parent="MarginContainer/Rows/Actions"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = ExtResource("1_oa8ng")
 icon_alignment = 1
 script = ExtResource("2_huqn1")
+
+[node name="Luanch" type="Button" parent="MarginContainer/Rows/Actions"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("5_ghkwv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="CheckNightly" type="Button" parent="MarginContainer/Rows/Actions"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Check the status of the  nightly build and redownload if needed."
+icon = ExtResource("5_ghkwv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Download" type="Button" parent="MarginContainer/Rows/Actions"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Download / Re-Download the app"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Cancel" type="Button" parent="MarginContainer/Rows/Actions"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Check the status of the  nightly build and redownload if needed."
+icon_alignment = 1
+expand_icon = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+use_threads = true
+
+[connection signal="pressed" from="MarginContainer/Rows/Actions/ActionBtn" to="." method="_action_btn_pressed"]

@@ -1,8 +1,10 @@
 extends ScrollContainer
 
 
+var nightly_card := preload("res://LuanchCard.tscn").instantiate()
+
+@onready var container := $HBoxContainer
 @onready var check_btn := $HBoxContainer/CheckNightly
-@onready var nightly_card := $HBoxContainer/NightlyCard
 
 var user_dir := OS.get_user_data_dir()
 
@@ -18,10 +20,30 @@ var up_to_data := false
 
 
 func _ready() -> void:
-	check_btn.pressed.connect(download)
+	container.add_child(nightly_card)
 	
-	create_nightly_dir()
-	configure()
+	nightly_card.set_app_name("Pixelorama Nightly")
+	nightly_card.set_card_type(nightly_card.CardTypes.Nightly)
+	nightly_card.set_author("Orama-Interactive | Nightly.link")
+
+
+func check_up_to_date() -> bool:
+	if FileAccess.file_exists("user://PixeloramaNightly/" + file_name):
+		check_btn.hide()
+		check_btn.disabled = true
+		return true
+	
+	check_btn.show()
+	check_btn.disabled = false
+	return false
+
+
+#func _ready() -> void:
+#	return
+#	check_btn.pressed.connect(download)
+#
+#	create_nightly_dir()
+#	configure()
 
 
 func create_nightly_dir() -> void:
@@ -51,17 +73,7 @@ func configure() -> void:
 	
 ## Checks the user directory to 
 func is_up_to_date() -> bool:
-	
-	# We already have it
-	if FileAccess.file_exists("user://nightly/" + file_name):
-		check_btn.hide()
-		check_btn.disabled = true
-		return true
-	
-	check_btn.show()
-	check_btn.disabled = false
 	return false
-
 
 func _update_nightly_link() -> void:
 	match os:

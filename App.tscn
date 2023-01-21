@@ -1,25 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://3u7p8h8qb3mm"]
+[gd_scene load_steps=5 format=3 uid="uid://3u7p8h8qb3mm"]
 
 [ext_resource type="Script" path="res://NightlyList.gd" id="1_5egow"]
 [ext_resource type="PackedScene" uid="uid://c0l6084ipb3g6" path="res://LuanchCard.tscn" id="1_guwqc"]
-[ext_resource type="Script" path="res://Scenes/Cards/NightlyCard.gd" id="2_6hu3b"]
-[ext_resource type="Texture2D" uid="uid://ycwkq482r6v4" path="res://Assets/Searching.png.png" id="2_nbq61"]
-[ext_resource type="Texture2D" uid="uid://bgysbpt5dd8wy" path="res://icon.svg" id="2_v1ws2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rek3t"]
-bg_color = Color(0.18359, 0.18359, 0.18359, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[ext_resource type="Script" path="res://CatagoriesScroll.gd" id="1_kmudt"]
+[ext_resource type="Script" path="res://Timeline.gd" id="3_6oj7c"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -40,208 +36,139 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("1_kmudt")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+script = ExtResource("3_6oj7c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 250)
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer" groups=["Catagory"]]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-text = "The #1 Place For Pixelorama Extensions"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
+
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
 text = "Variable Store"
 
-[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TagLine" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Download Now"
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 0.439216)
+theme_override_font_sizes/font_size = 16
+text = "The #1 Place For Pixelorama Extensions"
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+tooltip_text = "Want to add extensions, theme packs and more to pixelorama? Download Vaiable."
+theme_override_font_sizes/font_size = 22
+text = "Load Extensions"
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Official Pixelorama Releases"
 
-[node name="Official" type="ScrollContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Official" type="ScrollContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer" groups=["Catagory"]]
 custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 vertical_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Official"]
 layout_mode = 2
 
-[node name="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official/HBoxContainer" instance=ExtResource("1_guwqc")]
+[node name="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Official/HBoxContainer" instance=ExtResource("1_guwqc")]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Custom Pixelorama Builds"
 
-[node name="Official2" type="ScrollContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Custom" type="ScrollContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer" groups=["Catagory"]]
 custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 vertical_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Custom"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official2/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Custom/HBoxContainer"]
 custom_minimum_size = Vector2(225, 145)
 layout_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official2/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Custom/HBoxContainer"]
 custom_minimum_size = Vector2(225, 145)
 layout_mode = 2
 
-[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official2/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Custom/HBoxContainer"]
 custom_minimum_size = Vector2(225, 145)
 layout_mode = 2
 
-[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official2/HBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Custom/HBoxContainer"]
 custom_minimum_size = Vector2(225, 145)
 layout_mode = 2
 
-[node name="PanelContainer5" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official2/HBoxContainer"]
+[node name="PanelContainer5" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Custom/HBoxContainer"]
 custom_minimum_size = Vector2(225, 145)
 layout_mode = 2
 
-[node name="PanelContainer6" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official2/HBoxContainer"]
+[node name="PanelContainer6" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Custom/HBoxContainer"]
 custom_minimum_size = Vector2(225, 145)
 layout_mode = 2
 
-[node name="PanelContainer7" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official2/HBoxContainer"]
+[node name="PanelContainer7" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/Custom/HBoxContainer"]
 custom_minimum_size = Vector2(225, 145)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Pixelorama Nigtly"
 
-[node name="NightlyList" type="ScrollContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Check Nightly"
+
+[node name="NightlyList" type="ScrollContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer" groups=["Catagory"]]
+custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 0
 script = ExtResource("1_5egow")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer2/VBoxContainer/NightlyList"]
 layout_mode = 2
-
-[node name="CheckNightly" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer"]
-custom_minimum_size = Vector2(225, 110)
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_rek3t")
-icon = ExtResource("2_nbq61")
-icon_alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/CheckNightly"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Search For A Build"
-horizontal_alignment = 1
-
-[node name="NightlyCard" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer"]
-custom_minimum_size = Vector2(245, 145)
-layout_mode = 2
-script = ExtResource("2_6hu3b")
-
-[node name="HTTPRequest" type="HTTPRequest" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard"]
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Icon" type="TextureRect" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("2_v1ws2")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Pixelorama" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Pixelorama Nightly"
-
-[node name="Date" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.4, 0.290196, 0.611765)
-text = "[01.01.2023] Expired"
-
-[node name="Options" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Luanch" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer/Options"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Luanch"
-
-[node name="Delete" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer/Options"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Delete"
-
-[node name="Download" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer/Download"]
-layout_mode = 2
-value = 50.0
-
-[node name="CancelDownload" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer/Download"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Cancel"
