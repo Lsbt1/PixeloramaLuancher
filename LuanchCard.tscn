@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0l6084ipb3g6"]
+
+[ext_resource type="Texture2D" uid="uid://dh0gnmenw8j77" path="res://Assets/Cancel.png" id="1_oa8ng"]
+
+[node name="PanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(225, 145)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Orama"
+text_overrun_behavior = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ActionBtn" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "x"
+icon = ExtResource("1_oa8ng")

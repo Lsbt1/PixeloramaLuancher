@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3 uid="uid://byqy5d2efcxre"]
+
+[ext_resource type="Texture2D" uid="uid://bgysbpt5dd8wy" path="res://icon.svg" id="1_0udq7"]
+
+[node name="PanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(210, 110)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 225.0
+offset_bottom = 110.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 220.0
+offset_bottom = 105.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+offset_right = 215.0
+offset_bottom = 64.0
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_0udq7")
+ignore_texture_size = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+offset_left = 68.0
+offset_right = 215.0
+offset_bottom = 64.0
+
+[node name="Pixelorama" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+offset_right = 147.0
+offset_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Pixelorama Nightly"
+
+[node name="Date" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+offset_top = 30.0
+offset_right = 147.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.196078)
+text = "[01.01.2023]"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+offset_top = 68.0
+offset_right = 215.0
+offset_bottom = 99.0
+
+[node name="Luanch" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+offset_right = 152.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+text = "Luanch"
+
+[node name="Delete" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+offset_left = 156.0
+offset_right = 215.0
+offset_bottom = 31.0
+text = "Delete"
