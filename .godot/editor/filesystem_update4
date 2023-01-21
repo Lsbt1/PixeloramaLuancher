@@ -1,1 +1,5 @@
+res://LuanchCard.tscn
+res://Scenes/Cards/ActionBtn.gd
+res://Scenes/Cards/NightlyCard.tscn
 res://App.tscn
+res://DrawnProgressBar.gd

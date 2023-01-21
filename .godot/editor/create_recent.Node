@@ -1,5 +1,6 @@
-Button
 HBoxContainer
+Control
+Button
 Label
 VBoxContainer
 ProgressBar

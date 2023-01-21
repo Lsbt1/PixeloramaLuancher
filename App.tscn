@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://3u7p8h8qb3mm"]
 
 [ext_resource type="Script" path="res://NightlyList.gd" id="1_5egow"]
+[ext_resource type="PackedScene" uid="uid://c0l6084ipb3g6" path="res://LuanchCard.tscn" id="1_guwqc"]
 [ext_resource type="Script" path="res://Scenes/Cards/NightlyCard.gd" id="2_6hu3b"]
 [ext_resource type="Texture2D" uid="uid://ycwkq482r6v4" path="res://Assets/Searching.png.png" id="2_nbq61"]
 [ext_resource type="Texture2D" uid="uid://bgysbpt5dd8wy" path="res://icon.svg" id="2_v1ws2"]
@@ -17,9 +18,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wld16"]
-bg_color = Color(0.129412, 0.133333, 0.160784, 1)
-
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -35,6 +33,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -100,32 +101,7 @@ vertical_scroll_mode = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official/HBoxContainer"]
-custom_minimum_size = Vector2(225, 145)
-layout_mode = 2
-
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official/HBoxContainer"]
-custom_minimum_size = Vector2(225, 145)
-layout_mode = 2
-
-[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official/HBoxContainer"]
-custom_minimum_size = Vector2(225, 145)
-layout_mode = 2
-
-[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official/HBoxContainer"]
-custom_minimum_size = Vector2(225, 145)
-layout_mode = 2
-
-[node name="PanelContainer5" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official/HBoxContainer"]
-custom_minimum_size = Vector2(225, 145)
-layout_mode = 2
-
-[node name="PanelContainer6" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official/HBoxContainer"]
-custom_minimum_size = Vector2(225, 145)
-layout_mode = 2
-
-[node name="PanelContainer7" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official/HBoxContainer"]
-custom_minimum_size = Vector2(225, 145)
+[node name="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Official/HBoxContainer" instance=ExtResource("1_guwqc")]
 layout_mode = 2
 
 [node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -268,54 +244,4 @@ value = 50.0
 [node name="CancelDownload" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/NightlyList/HBoxContainer/NightlyCard/MarginContainer/VBoxContainer/Download"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Cancel"
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -469.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Downloads"
-
-[node name="ProgressBar" type="ProgressBar" parent="Panel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_wld16")
-value = 50.0
-show_percentage = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/ProgressBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/ProgressBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Pixelorama Version xxx"
-text_overrun_behavior = 3
-
-[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/ProgressBar/HBoxContainer"]
-layout_mode = 2
 text = "Cancel"
